@@ -38,3 +38,8 @@ type DeleteOpportunityResponse struct {
 	Message string                      `json:"message"`
 	Data    schemas.OpportunityResponse `json:"data"`
 }
+
+type ShowOpportunityResponse struct {
+	Message string                      `json:"message"`
+	Data    schemas.OpportunityResponse `json:"data"`
+}
