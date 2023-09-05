@@ -41,3 +41,16 @@ func (r *CreateOpportunityRequest) Validate() error {
 
 	return nil
 }
+
+// Update
+type UpdateOpportunityRequest struct {
+	CreateOpportunityRequest
+}
+
+func (r *UpdateOpportunityRequest) Validate() error {
+	if r.Role != "" || r.Company != "" || r.Location != "" || r.Link != "" || r.Remote != nil || r.Salary > 0 {
+		return nil
+	}
+
+	return fmt.Errorf("at least one valid field must be provided")
+}
