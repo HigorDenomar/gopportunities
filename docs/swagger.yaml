@@ -35,6 +35,15 @@ definitions:
       message:
         type: string
     type: object
+  handler.ListOpportunityResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/schemas.OpportunityResponse'
+        type: array
+      message:
+        type: string
+    type: object
   handler.ShowOpportunityResponse:
     properties:
       data:
@@ -66,6 +75,25 @@ definitions:
 info:
   contact: {}
 paths:
+  /opportunities:
+    get:
+      consumes:
+      - application/json
+      description: List all job opportunities
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListOpportunityResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: List opportunities
+      tags:
+      - Opportunities
   /opportunity:
     delete:
       consumes:

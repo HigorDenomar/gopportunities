@@ -7,6 +7,16 @@ import (
 	"github.com/higordenomar/gopportunities/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary List opportunities
+// @Description List all job opportunities
+// @Tags Opportunities
+// @Accept json
+// @Produce json
+// @Success 200 {object} ListOpportunityResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /opportunities [get]
 func ListOpportunitiesHandler(ctx *gin.Context) {
 	opportunities := []schemas.Opportunity{}
 

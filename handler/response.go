@@ -43,3 +43,8 @@ type ShowOpportunityResponse struct {
 	Message string                      `json:"message"`
 	Data    schemas.OpportunityResponse `json:"data"`
 }
+
+type ListOpportunityResponse struct {
+	Message string                        `json:"message"`
+	Data    []schemas.OpportunityResponse `json:"data"`
+}
