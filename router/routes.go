@@ -3,11 +3,20 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/higordenomar/gopportunities/handler"
+
+	"github.com/higordenomar/gopportunities/docs"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func initializeRoutes(router *gin.Engine) {
 	handler.Init()
-	v1 := router.Group("/api/v1")
+
+	basePath := "/api/v1"
+
+	docs.SwaggerInfo.BasePath = basePath
+
+	v1 := router.Group(basePath)
 
 	{
 		v1.POST("/opportunity", handler.CreateOpportunityHandler)
@@ -20,4 +29,6 @@ func initializeRoutes(router *gin.Engine) {
 
 		v1.DELETE("/opportunity", handler.DeleteOpportunityHandler)
 	}
+
+	router.GET("swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 }
