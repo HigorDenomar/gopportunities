@@ -51,6 +51,28 @@ definitions:
       message:
         type: string
     type: object
+  handler.UpdateOpportunityRequest:
+    properties:
+      company:
+        type: string
+      link:
+        type: string
+      location:
+        type: string
+      remote:
+        type: boolean
+      role:
+        type: string
+      salary:
+        type: integer
+    type: object
+  handler.UpdateOpportunityResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.OpportunityResponse'
+      message:
+        type: string
+    type: object
   schemas.OpportunityResponse:
     properties:
       company:
@@ -178,6 +200,44 @@ paths:
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
       summary: Create opportunity
+      tags:
+      - Opportunities
+    put:
+      consumes:
+      - application/json
+      description: Update a job opportunity
+      parameters:
+      - description: Opportunity identification
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Opportunity data to Update
+        in: body
+        name: opportunity
+        required: true
+        schema:
+          $ref: '#/definitions/handler.UpdateOpportunityRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.UpdateOpportunityResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Update opportunity
       tags:
       - Opportunities
 swagger: "2.0"

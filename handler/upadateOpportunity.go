@@ -8,6 +8,20 @@ import (
 	"github.com/higordenomar/gopportunities/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Update opportunity
+// @Description Update a job opportunity
+// @Tags Opportunities
+// @Accept json
+// @Produce json
+// @Param id query string true "Opportunity identification"
+// @Param opportunity body UpdateOpportunityRequest true "Opportunity data to Update"
+// @Success 200 {object} UpdateOpportunityResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /opportunity [put]
 func UpdateOpportunityHandler(ctx *gin.Context) {
 	request := UpdateOpportunityRequest{}
 	id := ctx.Query("id")
