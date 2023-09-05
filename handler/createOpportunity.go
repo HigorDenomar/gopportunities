@@ -15,7 +15,7 @@ import (
 // @Accept json
 // @Produce json
 // @Param request body CreateOpportunityRequest true "Request body"
-// @Success 200 {object} CreateOpeningResponse
+// @Success 200 {object} CreateOpportunityResponse
 // @Failure 400 {object} ErrorResponse
 // @Failure 500 {object} ErrorResponse
 // @Router /opportunity [post]
