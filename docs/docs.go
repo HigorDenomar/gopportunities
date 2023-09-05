@@ -43,7 +43,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/handler.CreateOpeningResponse"
+                            "$ref": "#/definitions/handler.CreateOpportunityResponse"
                         }
                     },
                     "400": {
@@ -59,21 +59,52 @@ const docTemplate = `{
                         }
                     }
                 }
+            },
+            "delete": {
+                "description": "Delete a job opportunity",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Opportunities"
+                ],
+                "summary": "Delete opportunity",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Opportunity identification",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.DeleteOpportunityResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    }
+                }
             }
         }
     },
     "definitions": {
-        "handler.CreateOpeningResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/schemas.OpportunityResponse"
-                },
-                "message": {
-                    "type": "string"
-                }
-            }
-        },
         "handler.CreateOpportunityRequest": {
             "type": "object",
             "properties": {
@@ -94,6 +125,28 @@ const docTemplate = `{
                 },
                 "salary": {
                     "type": "integer"
+                }
+            }
+        },
+        "handler.CreateOpportunityResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/schemas.OpportunityResponse"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.DeleteOpportunityResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/schemas.OpportunityResponse"
+                },
+                "message": {
+                    "type": "string"
                 }
             }
         },

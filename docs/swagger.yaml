@@ -1,11 +1,4 @@
 definitions:
-  handler.CreateOpeningResponse:
-    properties:
-      data:
-        $ref: '#/definitions/schemas.OpportunityResponse'
-      message:
-        type: string
-    type: object
   handler.CreateOpportunityRequest:
     properties:
       company:
@@ -20,6 +13,20 @@ definitions:
         type: string
       salary:
         type: integer
+    type: object
+  handler.CreateOpportunityResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.OpportunityResponse'
+      message:
+        type: string
+    type: object
+  handler.DeleteOpportunityResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.OpportunityResponse'
+      message:
+        type: string
     type: object
   handler.ErrorResponse:
     properties:
@@ -53,6 +60,34 @@ info:
   contact: {}
 paths:
   /opportunity:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a job opportunity
+      parameters:
+      - description: Opportunity identification
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.DeleteOpportunityResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Delete opportunity
+      tags:
+      - Opportunities
     post:
       consumes:
       - application/json
@@ -70,7 +105,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/handler.CreateOpeningResponse'
+            $ref: '#/definitions/handler.CreateOpportunityResponse'
         "400":
           description: Bad Request
           schema:

@@ -29,7 +29,12 @@ type ErrorResponse struct {
 	ErrorCode int32  `json:"errorCode"`
 }
 
-type CreateOpeningResponse struct {
+type CreateOpportunityResponse struct {
+	Message string                      `json:"message"`
+	Data    schemas.OpportunityResponse `json:"data"`
+}
+
+type DeleteOpportunityResponse struct {
 	Message string                      `json:"message"`
 	Data    schemas.OpportunityResponse `json:"data"`
 }

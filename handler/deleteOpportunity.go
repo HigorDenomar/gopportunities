@@ -8,6 +8,18 @@ import (
 	"github.com/higordenomar/gopportunities/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Delete opportunity
+// @Description Delete a job opportunity
+// @Tags Opportunities
+// @Accept json
+// @Produce json
+// @Param id query string true "Opportunity identification"
+// @Success 200 {object} DeleteOpportunityResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /opportunity [delete]
 func DeleteOpportunityHandler(ctx *gin.Context) {
 	id := ctx.Query("id")
 
